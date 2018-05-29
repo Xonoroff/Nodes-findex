@@ -1,0 +1,3 @@
+[submodule "Assets/Core/Conainers"]
+	path = Assets/Core/Conainers
+	url = https://github.com/Kovnir/PlayQ-test-task.git
