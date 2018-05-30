@@ -1,13 +1,14 @@
 ﻿using System;
-using System.Diagnostics;
+using Helpers;
+using Infrastucture;
 
-namespace Helpers
+namespace Entities
 {
     public class ContainerWrapper : Container, IContainer
     {
-        private readonly object[] nodes;
+        private readonly NodeWrapper[] nodes;
         
-        public object this[int i]
+        public NodeWrapper this[int i]
         {
             get { return nodes[i]; }
         }
@@ -17,19 +18,20 @@ namespace Helpers
         public ContainerWrapper(int count = 0) : base(count)
         {
             Count = count;
-            nodes = new object[count];
+            nodes = new NodeWrapper[count];
             FillNodes();
         }
 
         private void FillNodes()
         {
+            var mapper = new Mapper<object, NodeWrapper>();
             var currentNode = this.GetCurrentNode();
             var nextNode = this.GetNextNode(currentNode);
             var indexer = 0;
-            nodes[indexer] = currentNode;
-            while (nodes[0] != nextNode)
+            nodes[indexer] = mapper.Map(currentNode, new NodeWrapper());
+            while (currentNode != nextNode)
             {
-                nodes[++indexer] = nextNode;
+                nodes[++indexer] = mapper.Map(nextNode, new NodeWrapper());
                 nextNode = this.GetNextNode(nextNode);
             }
         }

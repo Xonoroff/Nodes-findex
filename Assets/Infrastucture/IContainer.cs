@@ -1,10 +1,13 @@
-﻿public interface IContainer
+﻿namespace Infrastucture
 {
-    int Count { get; }
+    public interface IContainer
+    {
+        int Count { get; }
     
-    bool Value { get; set; }
+        bool Value { get; set; }
     
-    void MoveForward();
+        void MoveForward();
 
-    void MoveBackward();
+        void MoveBackward();
+    }
 }

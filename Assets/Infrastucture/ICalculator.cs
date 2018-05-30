@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public interface ICalculator<T, U>
+﻿namespace Infrastucture
 {
-    T Calculate(U u);
+    public interface ICalculator<T, U>
+    {
+        T Calculate(U u);
+    }
 }
